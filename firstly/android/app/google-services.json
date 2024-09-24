@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "457253401130",
+    "project_id": "fypproject-10cad",
+    "storage_bucket": "fypproject-10cad.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:457253401130:android:9998214422345b3bf90953",
+        "android_client_info": {
+          "package_name": "com.example.firstly"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBXrBmr3gsO11yLUe40WmmQ0lpRuEgM5gw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,16 @@
+com.example.firstly.app-google-services-0 C:\FYP_Program\firstly\android\app\build\generated\res\google-services\release
+com.example.firstly.app-pngs-1 C:\FYP_Program\firstly\android\app\build\generated\res\pngs\release
+com.example.firstly.app-resValues-2 C:\FYP_Program\firstly\android\app\build\generated\res\resValues\release
+com.example.firstly.app-rs-3 C:\FYP_Program\firstly\android\app\build\generated\res\rs\release
+com.example.firstly.app-mergeReleaseResources-4 C:\FYP_Program\firstly\android\app\build\intermediates\incremental\release\mergeReleaseResources\merged.dir
+com.example.firstly.app-mergeReleaseResources-5 C:\FYP_Program\firstly\android\app\build\intermediates\incremental\release\mergeReleaseResources\stripped.dir
+com.example.firstly.app-merged_res-6 C:\FYP_Program\firstly\android\app\build\intermediates\merged_res\release
+com.example.firstly.app-main-7 C:\FYP_Program\firstly\android\app\src\main\res
+com.example.firstly.app-release-8 C:\FYP_Program\firstly\android\app\src\release\res
+com.example.firstly.app-core-1.6.0-9 C:\Users\USER\.gradle\caches\transforms-3\1227bb32d338e358eff4c5bf5b08270c\transformed\core-1.6.0\res
+com.example.firstly.app-jetified-window-1.0.0-beta04-10 C:\Users\USER\.gradle\caches\transforms-3\1f063c91a907141588f51f373b1f5f4a\transformed\jetified-window-1.0.0-beta04\res
+com.example.firstly.app-jetified-window-java-1.0.0-beta04-11 C:\Users\USER\.gradle\caches\transforms-3\6d2f8042b989e9f02a2914d91ea7c64c\transformed\jetified-window-java-1.0.0-beta04\res
+com.example.firstly.app-jetified-annotation-experimental-1.1.0-12 C:\Users\USER\.gradle\caches\transforms-3\a15c6353ebee292a754ca976f2ce177d\transformed\jetified-annotation-experimental-1.1.0\res
+com.example.firstly.app-jetified-firebase-common-21.0.0-13 C:\Users\USER\.gradle\caches\transforms-3\a1e9b7e171ebe989e7c2215846d4f6bc\transformed\jetified-firebase-common-21.0.0\res
+com.example.firstly.app-jetified-play-services-basement-18.3.0-14 C:\Users\USER\.gradle\caches\transforms-3\e76aed36a087f5f71489bfa0e357771e\transformed\jetified-play-services-basement-18.3.0\res
+com.example.firstly.app-packaged_res-15 C:\Users\USER\AppData\Local\Pub\Cache\hosted\pub.dev\firebase_core-3.1.0\android\build\intermediates\packaged_res\release

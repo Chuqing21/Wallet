@@ -1,0 +1,94 @@
+version: "3"
+services:
+  issuerConn:
+    image: bcgovimages/aries-cloudagent:py36-1.16-0_0.6.0
+    container_name: sainoforce
+    environment:
+      ACAPY_ADMIN_INSECURE_MODE: "true"
+      ACAPY_AUTO_PROVISION: "true"
+      ACAPY_DEBUG_CONNECTIONS: "true"
+      ACAPY_ENDPOINT: "http://sainoforce:6010"
+      ACAPY_LABEL: "SainoForce"
+      ACAPY_LOG_LEVEL: "info"
+      ADMIN_PORT: "6011"
+      AGENT_PORT: "6010"
+      ACAPY_WALLET_TYPE: "indy"
+      ACAPY_WALLET_NAME: "issuerwallet"
+      ACAPY_WALLET_KEY: "issuerkey"
+      ACAPY_GENESIS_URL: "http://host.docker.internal:9000/genesis"
+      TAILS_SERVER_BASE_URL: "https://e8bb-210-195-159-76.ngrok.io/"
+      ACAPY_MULTI_TENANT: "true"
+      ACAPY_MULTI_TENANT_ADMIN_API: "true"
+      ACAPY_MULTITENANT_JWT_SECRET: "eyJhbGciOiJIUzI1NiJ9.eyJSb2xlIjoiQWRtaW4iLCJJc3N1ZXIiOiJJc3N1ZXIiLCJleHAiOjE3MjUwODQxNjgsImlhdCI6MTcyNDMwNjU2OH0.DA-ftvLVe8rOU0s8bMzZ3VuXyKwdUgcC1hsnJI7iGE8"
+    entrypoint: /bin/bash
+    command: ["-c",
+      "aca-py start \
+      --multitenant \
+      --multitenant-admin \
+      --jwt-secret eyJhbGciOiJIUzI1NiJ9.eyJSb2xlIjoiQWRtaW4iLCJJc3N1ZXIiOiJJc3N1ZXIiLCJleHAiOjE3MjUwODQxNjgsImlhdCI6MTcyNDMwNjU2OH0.DA-ftvLVe8rOU0s8bMzZ3VuXyKwdUgcC1hsnJI7iGE8 \
+      --admin '0.0.0.0' 6011 \
+      --inbound-transport http '0.0.0.0' 6010 \
+      --outbound-transport http \
+      --wallet-type indy \
+      --wallet-name issuerwallet \
+      --wallet-key issuerkey \
+      --log-level 'info' \
+      --auto-provision \
+      --auto-accept-invites \
+      --auto-accept-requests \
+      --auto-ping-connection \
+      --genesis-url 'http://host.docker.internal:9000/genesis' "
+    ]
+    ports:
+      - "6011:6011"
+      - "6010:6010"
+    networks:
+      - acapy-network
+
+  holderConn:
+    image: bcgovimages/aries-cloudagent:py36-1.16-0_0.6.0
+    container_name: holderConn
+    environment:
+      ACAPY_ADMIN_INSECURE_MODE: "true"
+      ACAPY_AUTO_PROVISION: "true"
+      ACAPY_DEBUG_CONNECTIONS: "true"
+      ACAPY_ENDPOINT: "http://holderConn:7010"
+      ACAPY_LABEL: "HolderConn"
+      ACAPY_LOG_LEVEL: "info"
+      ADMIN_PORT: "7011"
+      AGENT_PORT: "7010"
+      ACAPY_WALLET_TYPE: "indy"
+      ACAPY_WALLET_NAME: "holderwallet"
+      ACAPY_WALLET_KEY: "holderkey"
+      ACAPY_GENESIS_URL: "http://host.docker.internal:9000/genesis"
+      ACAPY_MULTI_TENANT: "true"
+      ACAPY_MULTI_TENANT_ADMIN_API: "true"
+      ACAPY_MULTITENANT_JWT_SECRET: "eyJhbGciOiJIUzI1NiJ9.eyJSb2xlIjoiQWRtaW4iLCJJc3N1ZXIiOiJJc3N1ZXIiLCJleHAiOjE3MjUwODQxNjgsImlhdCI6MTcyNDMwNjU2OH0.DA-ftvLVe8rOU0s8bMzZ3VuXyKwdUgcC1hsnJI7iGE8"
+    entrypoint: /bin/bash
+    command: ["-c",
+      "aca-py start \
+      --multitenant \
+      --multitenant-admin \
+      --jwt-secret eyJhbGciOiJIUzI1NiJ9.eyJSb2xlIjoiQWRtaW4iLCJJc3N1ZXIiOiJJc3N1ZXIiLCJleHAiOjE3MjUwODQxNjgsImlhdCI6MTcyNDMwNjU2OH0.DA-ftvLVe8rOU0s8bMzZ3VuXyKwdUgcC1hsnJI7iGE8 \
+      --admin '0.0.0.0' 7011 \
+      --inbound-transport http '0.0.0.0' 7010 \
+      --outbound-transport http \
+      --wallet-type indy \
+      --wallet-name holderwallet \
+      --wallet-key holderkey \
+      --log-level 'info' \
+      --auto-provision \
+      --auto-accept-invites \
+      --auto-accept-requests \
+      --auto-ping-connection \
+      --genesis-url 'http://host.docker.internal:9000/genesis' "
+    ]
+    ports:
+      - "7011:7011"
+      - "7010:7010"
+    networks:
+      - acapy-network
+
+networks:
+  acapy-network:
+    driver: bridge

@@ -1,0 +1,5 @@
+# .gitignore file in SAINO/backend
+
+# Ignore .env file
+.env
+
