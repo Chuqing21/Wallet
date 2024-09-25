@@ -560,72 +560,31 @@ class _WorkInfoPageState extends State<WorkInfoPage> {
               _descriptionControllers[index], _isEditing),
           const SizedBox(height: 15.0),
           Row(
-            children: [
-              Expanded(
-                child: GestureDetector(
-                  onTap: _isEditing
-                      ? () => _selectMonthYear(context, index, true)
-                      : null, // Start Date
-                  child: AbsorbPointer(
-                    absorbing:
-                        !_isEditing, // Disable interaction when not editing
-                    child: Container(
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 15.0, vertical: 15.0),
-                      decoration: BoxDecoration(
-                        border: Border.all(color: Colors.grey),
-                        borderRadius: BorderRadius.circular(10.0),
-                      ),
-                      child: Text(
-                        _startDateControllers[index].text.isNotEmpty
-                            ? _startDateControllers[index]
-                                .text // Show selected date
-                            : 'Start Date', // Placeholder-like text
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          color: _startDateControllers[index].text.isNotEmpty
-                              ? Colors.black // Regular color for selected date
-                              : Colors.grey, // Lighter color for placeholder
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-              const SizedBox(width: 15.0),
-              Expanded(
-                child: GestureDetector(
-                  onTap: _isEditing
-                      ? () => _selectMonthYear(context, index, false)
-                      : null, // End Date
-                  child: AbsorbPointer(
-                    absorbing:
-                        !_isEditing, // Disable interaction when not editing
-                    child: Container(
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 15.0, vertical: 15.0),
-                      decoration: BoxDecoration(
-                        border: Border.all(color: Colors.grey),
-                        borderRadius: BorderRadius.circular(10.0),
-                      ),
-                      child: Text(
-                        _endDateControllers[index].text.isNotEmpty
-                            ? _endDateControllers[index]
-                                .text // Show selected date
-                            : 'End Date', // Placeholder-like text
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          color: _endDateControllers[index].text.isNotEmpty
-                              ? Colors.black // Regular color for selected date
-                              : Colors.grey, // Lighter color for placeholder
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-            ],
-          ),
+  children: [
+    Expanded(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          // Use _buildInputField for Start Date
+          _buildInputField(context, 'Start Date', _startDateControllers[index], _isEditing),
+          const SizedBox(height: 15.0),
+        ],
+      ),
+    ),
+    const SizedBox(width: 15.0),
+    Expanded(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          // Use _buildInputField for End Date
+          _buildInputField(context, 'End Date', _endDateControllers[index], _isEditing),
+          const SizedBox(height: 15.0),
+        ],
+      ),
+    ),
+  ],
+),
+
           const SizedBox(height: 15.0),
           if (_isEditing)
             Row(
