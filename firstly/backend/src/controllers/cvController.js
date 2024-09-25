@@ -996,10 +996,11 @@ module.exports.showDetails = async (req, res) => {
         }
 
         const pool = await poolPromise;
-        console.log("Start 1");
-        // Fetch Profile information
+
+        // Fetch Profile information, including PerID
         const profileQuery = `
             SELECT 
+                PerID AS perID,        -- Assuming PerID is the column for the profile ID
                 Name AS name, 
                 Age AS age, 
                 Email_Address AS email, 
@@ -1013,7 +1014,6 @@ module.exports.showDetails = async (req, res) => {
         const profileResult = await pool.request()
             .input('accountID', sql.Int, accountID)
             .query(profileQuery);
-        console.log("Start 2");
 
         if (profileResult.recordset.length === 0) {
             return res.status(404).json({ error: 'User not found' });
@@ -1045,7 +1045,6 @@ module.exports.showDetails = async (req, res) => {
         const educationResult = await pool.request()
             .input('accountID', sql.Int, accountID)
             .query(educationQuery);
-        console.log("Start 3");
 
         // Fetch Work Experience information
         const workExperienceQuery = `
@@ -1066,7 +1065,6 @@ module.exports.showDetails = async (req, res) => {
         const workExperienceResult = await pool.request()
             .input('accountID', sql.Int, accountID)
             .query(workExperienceQuery);
-        console.log("Start 4");
 
         // Fetch Skills information
         const skillsQuery = `
@@ -1082,37 +1080,30 @@ module.exports.showDetails = async (req, res) => {
             .input('accountID', sql.Int, accountID)
             .query(skillsQuery);
 
-        console.log("Start 5");
-
-
+        // Fetch Certifications information
         const certificationsQuery = `
-    SELECT 
-        CerID AS cerID, 
-        CerName AS name, 
-        CerEmail AS email, 
-        CerType AS type, 
-        CerIssuer AS issuer, 
-        CerDescription AS description, 
-        CONVERT(VARCHAR(10), CerAcquiredDate, 120) AS acquiredDate,
-        IsPublic AS isPublic
-    FROM Certification 
-    WHERE AccountID = @accountID AND IsPublic = 1
-`;
-        console.log("Start 6");
-
-
-
+            SELECT 
+                CerID AS cerID, 
+                CerName AS name, 
+                CerEmail AS email, 
+                CerType AS type, 
+                CerIssuer AS issuer, 
+                CerDescription AS description, 
+                CONVERT(VARCHAR(10), CerAcquiredDate, 120) AS acquiredDate,
+                IsPublic AS isPublic
+            FROM Certification 
+            WHERE AccountID = @accountID AND IsPublic = 1
+        `;
         const certificationResult = await pool.request()
             .input('accountID', sql.Int, accountID)
             .query(certificationsQuery);
 
-
-        // Combine profile, education, work experience, and skills details into a single object
+        // Combine profile, education, work experience, skills, and certifications into a single object
         const combinedDetails = {
-            profile: userDetails,
+            profile: userDetails,  // Includes PerID
             education: educationResult.recordset,
             workExperience: workExperienceResult.recordset,
-            skills: skillsResult.recordset, // Add skills details here
+            skills: skillsResult.recordset,
             certification: certificationResult.recordset,
         };
 
