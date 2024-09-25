@@ -125,8 +125,7 @@ class _WorkInfoPageState extends State<WorkInfoPage> {
         showErrorDialog(context, 'Failed to load work entries');
       }
     } catch (error) {
-      devtools.log('Error fetching work entries: $error');
-      showErrorDialog(context, 'Error fetching work entries');
+      devtools.log('No work entries: $error');
     }
   }
 
@@ -381,7 +380,8 @@ class _WorkInfoPageState extends State<WorkInfoPage> {
           headers: {'Content-Type': 'application/json'},
           body: body,
         );
-        if (response.statusCode == 200 && response2.statusCode == 200) {
+        if (response.statusCode == 200 &&
+            (response2.statusCode == 200 || response2.statusCode == 404)) {
           setState(() {
             _workExperienceEntries.removeAt(index);
             _jobTitleControllers.removeAt(index);
@@ -577,11 +577,15 @@ class _WorkInfoPageState extends State<WorkInfoPage> {
                         borderRadius: BorderRadius.circular(10.0),
                       ),
                       child: Text(
-                        _startDateControllers[index]
-                            .text, // Display the selected start date
-                        style: const TextStyle(
+                        _startDateControllers[index].text.isNotEmpty
+                            ? _startDateControllers[index]
+                                .text // Show selected date
+                            : 'Start Date', // Placeholder-like text
+                        style: TextStyle(
                           fontWeight: FontWeight.bold,
-                          color: Colors.black,
+                          color: _startDateControllers[index].text.isNotEmpty
+                              ? Colors.black // Regular color for selected date
+                              : Colors.grey, // Lighter color for placeholder
                         ),
                       ),
                     ),
@@ -605,11 +609,15 @@ class _WorkInfoPageState extends State<WorkInfoPage> {
                         borderRadius: BorderRadius.circular(10.0),
                       ),
                       child: Text(
-                        _endDateControllers[index]
-                            .text, // Display the selected end date
-                        style: const TextStyle(
+                        _endDateControllers[index].text.isNotEmpty
+                            ? _endDateControllers[index]
+                                .text // Show selected date
+                            : 'End Date', // Placeholder-like text
+                        style: TextStyle(
                           fontWeight: FontWeight.bold,
-                          color: Colors.black,
+                          color: _endDateControllers[index].text.isNotEmpty
+                              ? Colors.black // Regular color for selected date
+                              : Colors.grey, // Lighter color for placeholder
                         ),
                       ),
                     ),

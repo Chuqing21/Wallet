@@ -43,7 +43,7 @@ class CVPage extends StatelessWidget {
               _buildInfoBoxWithIcon(
                 context,
                 Icons.qr_code, // Default QR icon
-                'View QR Code',
+                'QR Code',
                 () => Navigator.of(context).push(
                   MaterialPageRoute(builder: (context) => const qrView()),
                 ),

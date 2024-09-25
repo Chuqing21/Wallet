@@ -115,12 +115,12 @@ class _ViewCVState extends State<ViewCV> {
                           ? _buildSoftSkillsSection(_cvData!['skills'])
                           : const Text("No skills information available."),
                       const SizedBox(height: 20), // More space between categories
+
+                      // Certifications Section
                       _buildSectionTitle(Icons.star, 'Certifications'),
-                      _cvData!['certifications'] != null
-                          ? _buildCertificationSection(
-                              _cvData!['certifications'])
-                          : const Text(
-                              "No certification information available."),
+                      _cvData!['certification'] != null
+                          ? _buildCertificationSection(_cvData!['certification'])
+                          : const Text("No certification information available."),
                       const SizedBox(height: 30), // Add some spacing
                     ],
                   ),

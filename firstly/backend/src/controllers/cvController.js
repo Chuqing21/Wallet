@@ -1082,18 +1082,19 @@ module.exports.showDetails = async (req, res) => {
 
         // Fetch Certifications information
         const certificationsQuery = `
-            SELECT 
-                CerID AS cerID, 
-                CerName AS name, 
-                CerEmail AS email, 
-                CerType AS type, 
-                CerIssuer AS issuer, 
-                CerDescription AS description, 
-                CONVERT(VARCHAR(10), CerAcquiredDate, 120) AS acquiredDate,
-                IsPublic AS isPublic
-            FROM Certification 
-            WHERE AccountID = @accountID AND IsPublic = 1
-        `;
+    SELECT 
+        CerID AS cerID, 
+        CerName AS name, 
+        CerEmail AS email, 
+        CerType AS type, 
+        CerIssuer AS issuer, 
+        CerDescription AS description, 
+        CONVERT(VARCHAR(10), CerAcquiredDate, 120) AS acquiredDate,
+        IsPublic AS isPublic
+    FROM Certification 
+    WHERE AccountID = @accountID AND IsPublic = 1
+`;
+
         const certificationResult = await pool.request()
             .input('accountID', sql.Int, accountID)
             .query(certificationsQuery);

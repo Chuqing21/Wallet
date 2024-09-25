@@ -4,6 +4,7 @@ import 'package:firstly/quali_info.dart';
 import 'package:firstly/softskill_info.dart';
 import 'package:firstly/work_info.dart';
 import 'package:flutter/material.dart';
+import 'credential2.dart';
 
 class SelfCredentialPage1 extends StatelessWidget {
   const SelfCredentialPage1({super.key});
@@ -60,11 +61,11 @@ class SelfCredentialPage1 extends StatelessWidget {
               _buildInfoBox(
                 context,
                 'images/qualification.png', // Use the same image for all boxes
-                'Qualification',
+                'Certification',
                 () => Navigator.of(context).push(
                   MaterialPageRoute(
                     builder: (BuildContext context) {
-                      return QualiInfoPage(); // Navigate to QualificationsPage
+                      return Credential2(); // Navigate to QualificationsPage
                     },
                   ),
                 ),
